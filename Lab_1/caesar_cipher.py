@@ -33,16 +33,16 @@ class CaesarCipher:
 def attack(ciphertext):
     for key in range(26):
         cipher = CaesarCipher(key)
-        plaintext = cipher.decrypt(ciphertext)
-        print(key, "-->", plaintext)
+        possible_plaintext = cipher.decrypt(ciphertext)
+        print(f"Key {key}: --> {possible_plaintext}")
 
 cipher = CaesarCipher(3)
 
 encrypted = cipher.encrypt("hello world!")
-print(encrypted)
+print("Encrypted 'hello world!':", encrypted)
 
 decrypted = cipher.decrypt(encrypted)
-print(decrypted)
+print("Decrypted ciphertext:", decrypted)
 
 print("Attack results: ")
 attack(encrypted)
