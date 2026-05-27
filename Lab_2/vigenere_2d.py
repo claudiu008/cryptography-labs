@@ -137,6 +137,7 @@ def score_english_text(text):
 
     return score
 
+
 def score_full_plaintext(text):
     score = score_english_text(text)
 
