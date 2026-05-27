@@ -116,25 +116,64 @@ def attack_vigenere_known_key_length(ciphertext, key_length):
 
     return found_key
 
+def index_of_coincidence(text):
+    n = len(text)
+
+    if n <= 1:
+        return 0
+
+    total = 0
+
+    for letter in Vigenere.alphabet:
+        count = text.count(letter)
+        total += count * (count - 1)
+
+    return total / (n * (n - 1))
+
+def find_key_length(ciphertext, max_key_length):
+    best_key_length = 1
+    best_score = 0
+
+    for key_length in range(1, max_key_length + 1):
+        streams = split_into_streams(ciphertext, key_length)
+
+        total_ic = 0
+
+        for stream in streams:
+            total_ic += index_of_coincidence(stream)
+
+        average_ic = total_ic / key_length
+
+        print(f"Key length {key_length}: IC = {average_ic}")
+
+        if average_ic > best_score:
+            best_score = average_ic
+            best_key_length = key_length
+
+    return best_key_length
 
 if __name__ == "__main__":
-    cipher = Vigenere("dog")
+    key = "cryptographyxx"  # 14 characters
 
     plaintext = (
-        "thisisaverylongenglishtextandweuseittotestthevigenereattack"
-        "thelongerthetextisthebetterthestatisticalattackworks"
-        "becauseletterfrequenciesbecomemorevisibleintheciphertext"
+        "thisisaverylongenglishtextusedtotestthevigenerecipher"
+        "theattackworksbetterwhentheciphertextislongerbecause"
+        "letterfrequenciesbecomemorevisible"
     )
 
-    ciphertext = cipher.encrypt(plaintext)
+    cipher = Vigenere(key)
 
+    ciphertext = cipher.encrypt(plaintext)
+    decrypted = cipher.decrypt(ciphertext)
+
+    print("Key:", key)
+    print("Key length:", len(key))
     print("Plaintext:", plaintext)
     print("Ciphertext:", ciphertext)
-    print("-----------")
-
-    found_key = attack_vigenere_known_key_length(ciphertext, 3)
-
-    print("Found key:", found_key)
-
-    decrypted = Vigenere(found_key).decrypt(ciphertext)
+    print()
+    print("Trying to find key length...")
+    found_key_length = find_key_length(ciphertext, 20)
+    print("Found key length:", found_key_length)
+    print()
     print("Decrypted:", decrypted)
+    print("Decryption successful:", decrypted == plaintext)
