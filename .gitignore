@@ -10,4 +10,5 @@ __pycache__/
 *.bak
 *.swp
 .env
-Thumbs.dbLab_5/keyFile.txt
+Thumbs.db
+Lab_5/keyFile.txt
