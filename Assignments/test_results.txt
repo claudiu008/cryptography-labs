@@ -1,0 +1,28 @@
+Uniform Distribution Test Results
+=================================
+
+1. Monobit test
+Total bits: 100000
+Zeros: 50087
+Ones: 49913
+Zero ratio: 0.500870
+One ratio: 0.499130
+Absolute difference: 174
+
+2. Byte frequency chi-square test
+Total bytes: 12500
+Expected frequency per byte value: 48.8281
+Minimum frequency: 25
+Maximum frequency: 75
+Mean frequency: 48.8281
+Chi-square statistic: 286.6470
+For 255 degrees of freedom, a value close to 255 is usually reasonable.
+
+3. Runs test
+Total bits: 100000
+Number of runs: 50139
+Expected approximately: 50000.50
+Difference: 138.50
+
+First 256 generated bits
+1111000011101000101010101010000011101011001011010001111111001100001000011110000001011001111000110100101100010010111001001000110110110101101111000011000111110011001111001010000110101000110101010011001111000111010001001011001011010101010100010111011001000010

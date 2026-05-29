@@ -12,3 +12,4 @@ __pycache__/
 .env
 Thumbs.db
 Lab_5/keyFile.txt
+**/entropy_log.txt
